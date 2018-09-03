@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="sample-services_main_emp-sequence_v1.0" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <switch source="$ctx:in">
+        <case regex="E112">
+            <property name="FirstName" scope="default" type="STRING" value="Amit"/>
+            <property name="LastName" scope="default" type="STRING" value="Kumar"/>
+            <property name="Age" scope="default" type="INTEGER" value="32"/>
+        </case>
+        <case regex="E114">
+            <property name="FirstName" scope="default" type="STRING" value="Hari"/>
+            <property name="LastName" scope="default" type="STRING" value="Krishna"/>
+            <property name="Age" scope="default" type="INTEGER" value="32"/>
+        </case>
+        <default>
+            <property name="FirstName" scope="default" type="STRING" value="Enter the emp no."/>
+            <property name="LastName" scope="default" type="STRING" value="enter the emp no."/>
+            <property name="Age" scope="default" type="INTEGER" value="0"/>
+        </default>
+    </switch>
+    <payloadFactory description="PayloadFactory" media-type="xml">
+        <format>
+            <soap:Envelope xmlns:message="http://service.infy.com/sampleTwo-services/message/v1" xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                <soap:Body>
+                    <message:outputResponse>
+                        <message:firstName>$1</message:firstName>
+                        <message:lastName>$2</message:lastName>
+                        <message:age>$3</message:age>
+                    </message:outputResponse>
+                </soap:Body>
+            </soap:Envelope>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:FirstName"/>
+            <arg evaluator="xml" expression="$ctx:LastName"/>
+            <arg evaluator="xml" expression="$ctx:Age"/>
+        </args>
+    </payloadFactory>
+</sequence>

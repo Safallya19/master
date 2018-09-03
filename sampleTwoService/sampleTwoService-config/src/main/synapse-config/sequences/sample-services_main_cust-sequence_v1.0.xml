@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="sample-services_main_cust-sequence_v1.0" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log>
+        <property expression="$body" name="var1"/>
+    </log>
+    <class description="" name="com.example.ClaimStatus"/>
+    <log>
+        <property expression="$body" name="class1"/>
+    </log>
+    <switch source="$ctx:cin">
+        <case regex="C2">
+            <property name="Id" scope="default" type="STRING" value="C234"/>
+            <property name="Name" scope="default" type="STRING" value="Ramu"/>
+            <property name="Age" scope="default" type="INTEGER" value="32"/>
+        </case>
+        <case regex="C3">
+            <property name="Id" scope="default" type="STRING" value="C675"/>
+            <property name="Name" scope="default" type="STRING" value="Arun"/>
+            <property name="Age" scope="default" type="INTEGER" value="32"/>
+        </case>
+        <default>
+            <property name="Id" scope="default" type="STRING" value="No id"/>
+            <property name="Name" scope="default" type="STRING" value="No name"/>
+            <property name="Age" scope="default" type="INTEGER" value="0"/>
+        </default>
+    </switch>
+    <payloadFactory description="PayloadFactory" media-type="xml">
+        <format>
+            <soap:Envelope xmlns:message="http://service.infy.com/sampleTwo-services/message/v1" xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+                <soap:Body>
+                    <message:outputResp>
+                        <message:customerId>$1</message:customerId>
+                        <message:customerName>$2</message:customerName>
+                        <message:age>$3</message:age>
+                    </message:outputResp>
+                </soap:Body>
+            </soap:Envelope>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:Id"/>
+            <arg evaluator="xml" expression="$ctx:Name"/>
+            <arg evaluator="xml" expression="$ctx:Age"/>
+        </args>
+    </payloadFactory>
+</sequence>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://service.infy.com/sampleTwo-services/message/v1"
+  xmlns:tns="http://service.infy.com/sampleTwo-services/message/v1"
+  elementFormDefault="qualified"
+  version="1.0">
+  <element name="inputRequest" type="tns:RequestType"/>
+   <element name="inReq" type="tns:ReqType"/>
+   <element name="outputResponse" type="tns:ResponseType"/>
+   <element name="outputResp" type="tns:RespType"/>
+   
+   <complexType name="RequestType">
+    <sequence minOccurs="1" maxOccurs="1">  
+     <element name="in" type="string" minOccurs="1"  maxOccurs="1"/>
+      
+    </sequence>
+   </complexType>
+   
+    <complexType name="ReqType">
+    <sequence minOccurs="1" maxOccurs="1">  
+     <element name="cin" type="string" minOccurs="1"  maxOccurs="1"/>
+      
+    </sequence>
+   </complexType>
+   
+     <complexType name="ResponseType">
+    <sequence minOccurs="1" maxOccurs="1"> 
+    <element name="out" type="tns:detail" minOccurs="1"  maxOccurs="1"/> 
+    </sequence>
+   </complexType>
+   <complexType name="detail">
+       <sequence minOccurs="1" maxOccurs="1"> 
+         <element name="firstName" type="string" minOccurs="1"  maxOccurs="1"/> 
+            <element name="lastName" type="string" minOccurs="1"  maxOccurs="1"/> 
+               <element name="age" type="integer" minOccurs="1"  maxOccurs="1"/> 
+               </sequence>
+   </complexType>
+   
+   
+    <complexType name="RespType">
+    <sequence minOccurs="1" maxOccurs="1"> 
+    <element name="cout" type="tns:cDetail" minOccurs="1"  maxOccurs="1"/> 
+    </sequence>
+   </complexType>
+   
+      <complexType name="cDetail">
+       <sequence minOccurs="1" maxOccurs="1"> 
+         <element name="customerId" type="string" minOccurs="1"  maxOccurs="1"/> 
+            <element name="customerName" type="string" minOccurs="1"  maxOccurs="1"/> 
+               <element name="age" type="integer" minOccurs="1"  maxOccurs="1"/> 
+               </sequence>
+   </complexType>
+</xs:schema>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="sampleTwo" groupId="com.example.sampleTwoService-registry.resource" version="1.0.0" type="registry/resource" serverRole="GovernanceRegistry">
+        <item>
+            <file>sampleTwo.xsd</file>
+            <path>/_system/config/sampleTwoService/xsd</path>
+            <mediaType>application/x-xsd+xml</mediaType>
+        </item>
+    </artifact>
+</artifacts>
